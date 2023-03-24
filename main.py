@@ -37,3 +37,36 @@ def get_operation(operator):
 #Function to clear the input field 
 def clear_all():
     display.delete(0,END)
+#Function which works like backspace
+def undo():
+    entire_string = display.get()
+    if len(entire_string):
+        new_string = entire_string[:-1]
+        clear_all()
+        display.insert(0,new_string)
+    else:
+        clear_all()
+        display.insert(0,"Error")
+
+#Function to calculate the factorial and display it
+def fact():
+    entire_string = display.get()
+    try:
+        result = factorial(int(entire_string))
+        clear_all()
+        display.insert(0,result)
+    except Exception:
+        clear_all()
+        display.insert(0,"Error")
+
+#--------------------------------------UI Design ---------------------------------------------
+
+#adding the input field
+display = Entry(root)
+display.grid(row=1,columnspan=6,sticky=N+E+W+S)
+ 
+#Code to add buttons to the Calculator
+
+Button(root,text="1",command = lambda :get_variables(1)).grid(row=2,column=0, sticky=N+S+E+W)
+Button(root,text=" 2",command = lambda :get_variables(2)).grid(row=2,column=1, sticky=N+S+E+W)
+Button(root,text=" 3",command = lambda :get_variables(3)).grid(row=2,column=2, sticky=N+S+E+W)
